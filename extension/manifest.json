@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "eBay Ghostbuster",
+  "description": "Chrome extension to detect and cancel bids from '0' feedback bidders",
+  "version": "1",
+  "background": {
+    "scripts": ["thirdparty/jquery-3.2.1.slim.min.js", "background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_icon": "icon.png",
+    "default_popup": "default_popup.html"
+  },
+  "permissions": [
+    "declarativeContent",
+    "https://www.ebay.co.uk/bfl/viewbids/*"
+  ],
+  "content_scripts": [{
+    "matches": ["https://www.ebay.co.uk/bfl/viewbids/*"],
+    "js": ["thirdparty/jquery-3.2.1.slim.min.js", "inject.js"],
+    "run_at": "document_idle"
+  }]
+}
